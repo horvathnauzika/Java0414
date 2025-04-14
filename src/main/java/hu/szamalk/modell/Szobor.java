@@ -1,8 +1,9 @@
 package hu.szamalk.modell;
 
+import java.io.Serializable;
 import java.util.UUID;
 
-public class Szobor extends Mukincs{
+public class Szobor extends Mukincs implements Serializable {
     private String anyag;
     private int szazad;
 
@@ -10,7 +11,10 @@ public class Szobor extends Mukincs{
         super(id, alkoto, cim, kategoria);
         this.anyag = anyag;
         setSzazad(szazad);
+    }
 
+    public String getAnyag() {
+        return anyag;
     }
 
     public int getSzazad() {
@@ -22,5 +26,18 @@ public class Szobor extends Mukincs{
             throw new NemLetezoSzazadKivetel("A század nem lehet > 21!");
         }
         this.szazad=szazad;
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
+
+    @Override
+    public String toString() {
+        return "Szobor{" +
+                "anyag='" + anyag + '\'' +
+                ", szazad=" + szazad +
+                '}';
     }
 }
